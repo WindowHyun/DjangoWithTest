@@ -1,5 +1,5 @@
-from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import render
 
 # https://docs.djangoproject.com/en/stable/ref/request-response/#django.http.HttpResponse
 
