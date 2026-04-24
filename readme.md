@@ -34,7 +34,7 @@
   요약된 최종 추천 순서
 
    1. 역기획서 작성 (완료)
-   2. CI 설정 및 정적 분석 (Linter, Formatter, GitHub Actions)
+   2. CI 설정 및 정적 분석 (Linter, Formatter, GitHub Actions) (임시 완성)
    3. 코드 개발 & 유닛 테스트 (Logic 단위)
    4. 통합 테스트 (Service/DB 연동)
    5. API 테스트 (REST API 엔드포인트 검증)
