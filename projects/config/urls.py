@@ -16,10 +16,11 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
-from pybo import views
+from django.urls import include, path
+
+# from pybo import views 더이상 필요하지 않으므로 삭제
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("pybo/", views.index)
+    path("pybo/", include('pybo.urls')), #path("pybo/", views.index) include로 변경 >> pybo/urls.py 에서 수정
 ]
