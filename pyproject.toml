@@ -18,7 +18,22 @@ extend-exclude = '''
 )/
 '''
 
+[project]
+name = "projects"
+version = "0.1.0"
+description = "Django proejct with tests"
+requires-python = ">=3.13"
+dependencies = [
+    "django>=6.0.4",
+]
+
 [tool.isort]
 profile = "black"
 line_length = 127
 skip = ["migrations", "venv"]
+
+[tool.uv.workspace]
+members = [
+    "projects/mysite",
+]
+
