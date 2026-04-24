@@ -21,6 +21,15 @@ TIME_ZONE = 'Asia/Seoul'
 python manage.py test {프로젝트 앱 경로}.{tests}.{test.py 안에 있는 테스트 클래스}.{클래스 안에 있는 메서드명}
 (예시 코드) python manage.py test pybo.tests.PyboIndexTest.test_index_status
 
+> app 추가 시 settings.py 에 등록해야하는거
+INSTALLED_APPS 에 app이름.apps.앱이름Config 추가
+(예시) pybo.apps.PyboConfig
+
+> 모델 생성 후 
+uv run manage.py migrate
+
+> 모델 생성 이후 변경이나 모델이 추가될 경우
+uv run manage.py makemigrations
 
 ## startapp 
 

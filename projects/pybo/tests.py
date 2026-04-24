@@ -1,4 +1,7 @@
 from django.test import TestCase
+from django.utils import timezone
+
+from .models import *
 
 
 # Create your tests here.
@@ -13,3 +16,37 @@ class PyboIndexTest(TestCase):
     def test_index_content(self):
         response = self.client.get('/pybo/')
         self.assertContains(response, "안녕하세요 pybo에 오신것을 환영합니다.")
+
+class QuestionModelTest(TestCase):
+    # TC-1. 테스트 데이터 생성
+    def test_question_create(self):
+        q = Question.objects.create(
+            subject="첫 번째 질문입니다.",
+            content ="테스트 데이터 생성중입니다.",
+            create_date=timezone.now()
+        )
+
+    # TC-2. 데이터가 DB에 잘 입력되었는지 확인
+        self.assertEqual(q.subject, "첫 번째 질문입니다.")
+        self.assertEqual(Question.objects.count(), 1)
+
+    def test_answer_create(self):
+
+        #TC-1. 질문 목데이터 생성하기
+        q = Question.objects.create(
+            subject="첫 번째 질문입니다.",
+            content ="테스트 데이터 생성중입니다.",
+            create_date=timezone.now()
+        )
+
+
+        #TC-2 q 인스턴스 전달받아 answer 데이터 생성
+        a = Answer.objects.create(
+            question = q,
+            content = "테스트 답변중입니다.",
+            create_date=timezone.now()
+        )
+
+        #TC-3 content 데이터가 '테스트'로 시작하는지 확인 
+        self.assertStartsWith(a.content,"테스트") ## 테스트로 시작
+        self.assertEqual(Answer.objects.count(), 1)
