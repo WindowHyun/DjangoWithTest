@@ -17,6 +17,11 @@
 LANGUAGE_CODE = 'ko-kr'
 TIME_ZONE = 'Asia/Seoul'
 
+> test 코드 작동 시키는 방법
+python manage.py test {프로젝트 앱 경로}.{tests}.{test.py 안에 있는 테스트 클래스}.{클래스 안에 있는 메서드명}
+(예시 코드) python manage.py test pybo.tests.PyboIndexTest.test_index_status
+
+
 ## startapp 
 
 >migrations : 파일이 아닌 디렉터리이며, 장고가 데이터베이스 테이블을 생성하고 수정하기 위한 파일들을 이곳에서 관리한다.
