@@ -1,0 +1,16 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - /app/.venv/
+    environment:
+      - DEBUG=True
+      - PATH=/app/.venv/bin:/usr/local/bin:/usr/bin:/bin
+      - PYTHONPATH=/app/projects
+    # Override CMD to run migrations before starting
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
