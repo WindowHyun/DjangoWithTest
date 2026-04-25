@@ -50,3 +50,26 @@ class QuestionModelTest(TestCase):
         #TC-3 content 데이터가 '테스트'로 시작하는지 확인 
         self.assertStartsWith(a.content,"테스트") ## 테스트로 시작
         self.assertEqual(Answer.objects.count(), 1)
+
+class PyboViewTest(TestCase):
+    def setUp(self):
+            # 테스트 진행 전 데이터 생성
+        Question.objects.create(
+            subject="테스트 질문입니다.",
+            content ="테스트 데이터 생성중입니다.",
+            create_date=timezone.now()
+        )
+
+    def test_index_view_with_questions(self):
+        # index 페이지 진입 후 DB에 질문이 정상적으로 노출되는지 테스트
+
+        response = self.client.get('/pybo/')
+            
+        # TC-1 : 응답 상태 200 확인
+        self.assertEqual(response.status_code,200)
+            
+        # TC-2 : 응답 내용에 setUp 에서 만들어진 질문 제목이 포함 되어있는지 확인
+        self.assertContains(response, "테스트")
+
+        # TC-3 : 템플릿에 전달된 question_list에 데이터가 있는지 확인
+        self.assertEqual(len(response.context['question_list']),1)
