@@ -15,7 +15,7 @@ class PyboIndexTest(TestCase):
 
     def test_index_content(self):
         response = self.client.get('/pybo/')
-        self.assertContains(response, "안녕하세요 pybo에 오신것을 환영합니다.")
+        self.assertContains(response, "질문이 없습니다.")
 
 class QuestionModelTest(TestCase):
     # TC-1. 테스트 데이터 생성
@@ -48,7 +48,7 @@ class QuestionModelTest(TestCase):
         )
 
         #TC-3 content 데이터가 '테스트'로 시작하는지 확인 
-        self.assertStartsWith(a.content,"테스트") ## 테스트로 시작
+        self.assertTrue(a.content.startswith("테스트")) ## 테스트로 시작
         self.assertEqual(Answer.objects.count(), 1)
 
 class PyboViewTest(TestCase):
