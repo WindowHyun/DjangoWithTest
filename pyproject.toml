@@ -31,7 +31,8 @@ dependencies = [
 [tool.isort]
 profile = "black"
 line_length = 127
-skip = ["migrations", "venv"]
+skip = ["migrations", "venv", ".venv"]
+skip_glob = ["**/migrations/*.py", "**/.venv/*"]
 
 [tool.uv.workspace]
 members = [

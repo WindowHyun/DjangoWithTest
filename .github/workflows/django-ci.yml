@@ -30,16 +30,16 @@ jobs:
     
     - name: Lint with flake8
       run: |
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --exclude=.venv
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --exclude=.venv
     
     - name: Check formatting with black
       run: |
-        black --check . || echo "Formatting issues found. Run 'black .' locally."
+        black --check . --exclude /\.venv/ || echo "Formatting issues found. Run 'black .' locally."
 
     - name: Check imports with isort
       run: |
-        isort --check-only --profile black .
+        isort --check-only --profile black . --skip .venv
     
     - name: Run Tests
       run: |
