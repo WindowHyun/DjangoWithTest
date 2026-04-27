@@ -97,3 +97,24 @@ class PyboDetailViewTest(TestCase):
     def test_detail_view_context(self):
         response = self.client.get(f'/pybo/{self.question.id}/')
         self.assertEqual(response.context['question'], self.question)
+
+
+class PyboDetailObjector404(TestCase):
+    def setUp(self):
+            # 테스트 진행 전 데이터 생성
+        self.question = Question.objects.create(
+            subject="테스트 질문입니다.",
+            content ="테스트 데이터 생성중입니다.",
+            create_date=timezone.now()
+        )
+
+    def test_detail_view_success(self):
+        response = self.client.get(f'/pybo/{self.question.id}/')
+        self.assertEqual(response.status_code,200)
+
+        self.assertContains(response, self.question.subject)
+        self.assertEqual(response.context['question'], self.question)
+
+    def test_detail_view_404(self):
+        response = self.client.get('/pybo/999/')
+        self.assertEqual(response.status_code,404)
